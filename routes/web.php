@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
+
 
 
 
@@ -83,6 +85,8 @@ Route::post('/addProductDB', [ProductController::class, 'addProductDB'])->name('
 
 // Delete product routes
 Route::post('/deleteProduct', [ProductController::class, 'deleteProduct'])->name('deleteProduct');
+
+Route::get'/search', [SearchController::class, 'search'])->name('search');
 
 
 
