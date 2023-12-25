@@ -30,10 +30,12 @@
                                   d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
-                    <input type="search" id="live-search"
-                           class="block w-[35rem] p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                           placeholder="Search Computer, Laptop..." required>
-
+                    <div class="relative">
+                        <input type="search" id="live-search"
+                               class="block w-[35rem] p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                               placeholder="Search Computer, Laptop..." required>
+                        <div id="suggestions-container" class="absolute z-10 w-full bg-white rounded shadow-lg"></div>
+                    </div>
                 </div>
             </form>
 
@@ -43,7 +45,6 @@
                 @endguest
 
                     <form method="GET" action={{route('productsCatalog')}}>
-                        @csrf
                         <label>
                             <button type = "submit" class="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
                                 Products
@@ -54,7 +55,6 @@
                 @auth()
                         @if(auth()->user() && auth()->user()->admin)
                             <form method="GET" action={{route('productPageAdmin')}}>
-                                @csrf
                                 <label>
                                     <button type = "submit" class="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
                                         Admin page
@@ -69,7 +69,6 @@
                 @endguest
                 @auth()
                     <form method="GET" action={{route('profile')}}>
-                        @csrf
                         <label>
                             <button type = "submit" class="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
                                 Profile
@@ -82,7 +81,6 @@
                 @endguest
                 @auth()
                     <form method="GET" action={{route('cart')}}>
-                        @csrf
                         <label>
                             <button type = "submit" class="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2">
                                 Cart
@@ -121,7 +119,7 @@
 <footer class="bg-[#141414] text-white p-4 bottom-0 left-0 w-full">
     <p>&copy; 2023 Computer Store</p>
 </footer>
-
+<script src="{{ asset('js/live-search.js') }}"></script>
 </body>
 </html>
 

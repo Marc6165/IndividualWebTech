@@ -8,7 +8,6 @@
         </div>
         <div class="mt-10">
             <form method="GET" action="{{ route('productPage') }}">
-                @csrf
                 <input type="hidden" name="product_id" value="{{ $Product->id }}">
                 <button class="dynamicButton bg-blue-500 text-white py-2 px-4 rounded">Click For More</button>
             </form>

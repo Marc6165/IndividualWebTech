@@ -13,7 +13,6 @@
     </div>
     <div>
         <form method="GET" action={{ route('productPage') }}>
-            @csrf
             <input type="hidden" name="product_id" value="{{ $Product['product']->id }}">
             <button class="bg-blue-500 text-white py-2 px-4 rounded">Click for More</button>
         </form>

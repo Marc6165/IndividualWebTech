@@ -38,7 +38,6 @@
                     <span class="font-semibold">${{ number_format($subtotal, 2) }}</span>
                 </div>
                 <form method="GET" action="{{ route('checkoutPage') }}">
-                    @csrf
                 <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">Checkout</button>
                 </form>
             </div>
