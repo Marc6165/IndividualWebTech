@@ -16,7 +16,7 @@ class SearchController extends Controller
         }
 
         $searchResults = Product::whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($query) . '%'])
-            ->take(10)
+            ->take(5)
             ->get();
 
         return response()->json($searchResults);
