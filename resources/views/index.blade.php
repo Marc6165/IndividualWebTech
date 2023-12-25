@@ -5,43 +5,54 @@
 @section("content")
 
     <style>
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
         #halloweenBanner {
-            transform: translateX(-100%);
-            transition: transform 1s ease-out;
+            animation: 1s ease-out 0s 1 slideInFromLeft;
         }
     </style>
 
-    <div>
-        <div class="h-[91px] bg-amber-500" id="halloweenBanner">
-
-            <img class="object-fill h-full w-full"
-                 src="https://static.vecteezy.com/system/resources/thumbnails/010/504/213/small/of-halloween-sale-promotion-poster-or-banner-with-halloween-pumpkin-ghost-candlelight-buntings-and-halloween-elements-website-spooky-background-or-banner-halloween-template-vector.jpg">
-        </div>
-        <div class="h-[460px]">
-            <img class="object-fill h-full w-full"
-                 src="https://s3-alpha-sig.figma.com/img/413f/1a75/95cc4dcd21037a3b46cf4a98c8d41f3d?Expires=1703462400&Signature=QdwEF797PItII3plkMVC-w9J4Jj-RsFn4AJuvF35kfWyPr-24hiQbeLxTYGGJhlNTNLNzH0be3uz-lw6Di53kAQbe~7fcoX95sqKCYmwfPh6RGYjq0a1QawtRPemT5rkU-~M~lj5RQjzjO5hY1WzBZ4zwrimdJEUlvCgLAeFHF9KHm5qae4g6kvCxtzlccfJbiTCNZB3FP66JEWcSf1JnAsve8cnnD~Gm5jB~b7ZnQTJRWvuuJf0K10jRtOEkkrP~fIlTLYK-ZAt1ClxD~y3vZP0FpngizT61y8cf7eVRXKIaaQd-~Q5wePZGi58RraX0AQvBXL4fRg36nAEez5BxA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"/>
-        </div>
-        <div class="bg-amber-500">
-            <section class="container mx-auto p-4">
-                <div class="grid grid-cols-7 gap-4">
-                    @php $count = 0; @endphp
-                    @foreach ($products as $product)
-                        @include("components.productBoxData", [
-                            "Product" => $product
-                        ])
-                        @php $count++; @endphp
-                        @if ($count == 7)
-                            @break
-                        @endif
-                    @endforeach
-                </div>
-            </section>
-        </div>
+    <div id="halloweenBanner" class="bg-blue-800 text-white text-center py-3">
+        <p class="text-lg font-semibold">Free shipping on orders over €50 - 24/7 Customer Service</p>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            document.getElementById('halloweenBanner').style.transform = 'translateX(0%)';
-        });
-    </script>
+
+    <section class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4">
+
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-extrabold text-gray-800">Featured Products</h2>
+                <p class="text-md text-gray-600">Check out our best-selling products</p>
+            </div>
+
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-10">
+                @php $count = 0; @endphp
+                @foreach ($products as $product)
+                    @if ($count < 3)
+                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 ease-in-out flex flex-col justify-between">
+                            <img class="mx-auto h-48 w-auto p-2" src="{{ $product->image }}" alt="{{ $product->name }}">
+                            <div class="flex flex-col p-6 space-y-2">
+                                <h5 class="text-lg font-medium text-gray-800">{{ $product->name }}</h5>
+                                <p class="text-xl font-semibold text-gray-800">€ {{ $product->price }}</p>
+                                <a href="{{ $product->url }}" class="mt-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-center transition-colors duration-200">Click For More</a>
+                            </div>
+                        </div>
+                        @php $count++; @endphp
+                    @endif
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+
+    </div>
+
 @endsection
